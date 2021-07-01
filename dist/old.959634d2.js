@@ -124,7 +124,7 @@ var User =
 /** @class */
 function () {
   function User() {
-    this._password = 'user';
+    this._password = "user";
   } //Interesting detail here: while I did not define a return type or param type, any deviation from the interface will give you an error.
   // Test it out by uncommenting the code below.
 
@@ -151,7 +151,7 @@ function () {
   };
 
   User.prototype.resetPassword = function () {
-    this._password = prompt('What is your new password?');
+    this._password = prompt("What is your new password?");
   };
 
   return User;
@@ -162,7 +162,7 @@ var Admin =
 /** @class */
 function () {
   function Admin() {
-    this._password = 'admin';
+    this._password = "admin";
   }
 
   Admin.prototype.checkGoogleLogin = function (token) {
@@ -178,36 +178,36 @@ function () {
   };
 
   Admin.prototype.setFacebookToken = function () {
-    throw new Error('Function not supported for admins');
+    throw new Error("Function not supported for admins");
   };
 
   Admin.prototype.setGoogleToken = function () {
-    throw new Error('Function not supported for admins');
+    throw new Error("Function not supported for admins");
   };
 
   Admin.prototype.resetPassword = function () {
-    this._password = prompt('What is your new password?');
+    this._password = prompt("What is your new password?");
   };
 
   return Admin;
 }(); // class GoogleBot implements UserAuth {}
 
 
-var passwordElement = document.querySelector('#password');
-var typePasswordElement = document.querySelector('#typePassword');
-var typeGoogleElement = document.querySelector('#typeGoogle');
-var typeFacebookElement = document.querySelector('#typeFacebook');
-var loginAsAdminElement = document.querySelector('#loginAsAdmin');
-var resetPasswordElement = document.querySelector('#resetPassword');
+var passwordElement = document.querySelector("#password");
+var typePasswordElement = document.querySelector("#typePassword");
+var typeGoogleElement = document.querySelector("#typeGoogle");
+var typeFacebookElement = document.querySelector("#typeFacebook");
+var loginAsAdminElement = document.querySelector("#loginAsAdmin");
+var resetPasswordElement = document.querySelector("#resetPassword");
 var guest = new User();
 var admin = new Admin();
-document.querySelector('#login-form').addEventListener('submit', function (event) {
+document.querySelector("#login-form").addEventListener("submit", function (event) {
   event.preventDefault();
   var user = loginAsAdminElement.checked ? admin : guest;
 
   if (!loginAsAdminElement.checked) {
-    user.setGoogleToken('secret_token_google');
-    user.setFacebookToken('secret_token_fb');
+    user.setGoogleToken("secret_token_google");
+    user.setFacebookToken("secret_token_fb");
   }
 
   debugger;
@@ -219,22 +219,22 @@ document.querySelector('#login-form').addEventListener('submit', function (event
       break;
 
     case typeGoogleElement.checked:
-      auth = user.checkGoogleLogin('secret_token_google');
+      auth = user.checkGoogleLogin("secret_token_google");
       break;
 
     case typeFacebookElement.checked:
       debugger;
-      auth = user.getFacebookLogin('secret_token_fb');
+      auth = user.getFacebookLogin("secret_token_fb");
       break;
   }
 
   if (auth) {
-    alert('login success');
+    alert("login success");
   } else {
-    alert('login failed');
+    alert("login failed");
   }
 });
-resetPasswordElement.addEventListener('click', function (event) {
+resetPasswordElement.addEventListener("click", function (event) {
   event.preventDefault();
   var user = loginAsAdminElement.checked ? admin : guest;
   user.resetPassword();
