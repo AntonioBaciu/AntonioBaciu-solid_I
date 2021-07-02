@@ -117,8 +117,8 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"old.js":[function(require,module,exports) {
-"use strict";
+})({"new.js":[function(require,module,exports) {
+"use strict"; // multiple implementation possible
 
 var User =
 /** @class */
@@ -165,24 +165,8 @@ function () {
     this._password = "admin";
   }
 
-  Admin.prototype.checkGoogleLogin = function (token) {
-    return false;
-  };
-
   Admin.prototype.checkPassword = function (password) {
     return password === this._password;
-  };
-
-  Admin.prototype.getFacebookLogin = function (token) {
-    return false;
-  };
-
-  Admin.prototype.setFacebookToken = function () {
-    throw new Error("Function not supported for admins");
-  };
-
-  Admin.prototype.setGoogleToken = function () {
-    throw new Error("Function not supported for admins");
   };
 
   Admin.prototype.resetPassword = function () {
@@ -193,6 +177,24 @@ function () {
 }(); // class GoogleBot implements UserAuth {}
 
 
+var GoogleBot =
+/** @class */
+function () {
+  function GoogleBot() {
+    this._password = "user";
+  }
+
+  GoogleBot.prototype.checkGoogleLogin = function (token) {
+    return token === this._googleToken;
+  };
+
+  GoogleBot.prototype.setGoogleToken = function (token) {
+    this._googleToken = token;
+  };
+
+  return GoogleBot;
+}();
+
 var passwordElement = document.querySelector("#password");
 var typePasswordElement = document.querySelector("#typePassword");
 var typeGoogleElement = document.querySelector("#typeGoogle");
@@ -201,6 +203,7 @@ var loginAsAdminElement = document.querySelector("#loginAsAdmin");
 var resetPasswordElement = document.querySelector("#resetPassword");
 var guest = new User();
 var admin = new Admin();
+var bot = new GoogleBot();
 document.querySelector("#login-form").addEventListener("submit", function (event) {
   event.preventDefault();
   var user = loginAsAdminElement.checked ? admin : guest;
@@ -267,7 +270,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55379" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57996" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -443,5 +446,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","old.js"], null)
-//# sourceMappingURL=/old.959634d2.js.map
+},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","new.js"], null)
+//# sourceMappingURL=/new.0ac14a2a.js.map
