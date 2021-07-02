@@ -32,20 +32,8 @@ var Admin = /** @class */ (function () {
     function Admin() {
         this._password = "admin";
     }
-    Admin.prototype.checkGoogleLogin = function (token) {
-        return false;
-    };
     Admin.prototype.checkPassword = function (password) {
         return password === this._password;
-    };
-    Admin.prototype.getFacebookLogin = function (token) {
-        return false;
-    };
-    Admin.prototype.setFacebookToken = function () {
-        throw new Error("Function not supported for admins");
-    };
-    Admin.prototype.setGoogleToken = function () {
-        throw new Error("Function not supported for admins");
     };
     Admin.prototype.resetPassword = function () {
         this._password = prompt("What is your new password?");
@@ -62,18 +50,6 @@ var GoogleBot = /** @class */ (function () {
     };
     GoogleBot.prototype.setGoogleToken = function (token) {
         this._googleToken = token;
-    };
-    GoogleBot.prototype.getFacebookLogin = function (token) {
-        return false;
-    };
-    GoogleBot.prototype.setFacebookToken = function () {
-        throw new Error("Function not supported for bots");
-    };
-    GoogleBot.prototype.checkPassword = function (password) {
-        return password === this._password;
-    };
-    GoogleBot.prototype.resetPassword = function () {
-        this._password = prompt("What is your new password?");
     };
     return GoogleBot;
 }());

@@ -51,24 +51,8 @@ class User implements UserAuth, UserGoAuth, UserFbAuth {
 class Admin implements UserAuth {
   private _password: string = "admin";
 
-  checkGoogleLogin(token: string): boolean {
-    return false;
-  }
-
   checkPassword(password: string): boolean {
     return password === this._password;
-  }
-
-  getFacebookLogin(token: string): boolean {
-    return false;
-  }
-
-  setFacebookToken() {
-    throw new Error("Function not supported for admins");
-  }
-
-  setGoogleToken() {
-    throw new Error("Function not supported for admins");
   }
 
   resetPassword() {
@@ -88,22 +72,6 @@ class GoogleBot implements UserAuth, UserGoAuth {
 
   setGoogleToken(token: string) {
     this._googleToken = token;
-  }
-
-  getFacebookLogin(token: string): boolean {
-    return false;
-  }
-
-  setFacebookToken() {
-    throw new Error("Function not supported for bots");
-  }
-
-  checkPassword(password: string): boolean {
-    return password === this._password;
-  }
-
-  resetPassword() {
-    this._password = prompt("What is your new password?");
   }
 }
 
