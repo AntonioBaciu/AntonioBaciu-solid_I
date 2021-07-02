@@ -40,10 +40,9 @@ var Admin = /** @class */ (function () {
     };
     return Admin;
 }());
-// class GoogleBot implements UserAuth {}
+// class GoogleBot implements Auth {}
 var GoogleBot = /** @class */ (function () {
     function GoogleBot() {
-        this._password = "user";
     }
     GoogleBot.prototype.checkGoogleLogin = function (token) {
         return token === this._googleToken;

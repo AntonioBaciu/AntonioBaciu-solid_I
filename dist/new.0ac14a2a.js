@@ -174,15 +174,13 @@ function () {
   };
 
   return Admin;
-}(); // class GoogleBot implements UserAuth {}
+}(); // class GoogleBot implements Auth {}
 
 
 var GoogleBot =
 /** @class */
 function () {
-  function GoogleBot() {
-    this._password = "user";
-  }
+  function GoogleBot() {}
 
   GoogleBot.prototype.checkGoogleLogin = function (token) {
     return token === this._googleToken;
@@ -270,7 +268,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57996" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58271" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

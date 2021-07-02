@@ -1,4 +1,4 @@
-interface UserAuth {
+interface Auth {
   checkPassword(password: string): boolean;
   resetPassword();
 }
@@ -14,7 +14,7 @@ interface UserFbAuth {
 }
 
 // multiple implementation possible
-class User implements UserAuth, UserGoAuth, UserFbAuth {
+class User implements Auth, UserGoAuth, UserFbAuth {
   private _password: string = "user";
   private _facebookToken: string;
   private _googleToken: string;
@@ -48,7 +48,7 @@ class User implements UserAuth, UserGoAuth, UserFbAuth {
 }
 
 //admin cannot use google or facebook token
-class Admin implements UserAuth {
+class Admin implements Auth {
   private _password: string = "admin";
 
   checkPassword(password: string): boolean {
@@ -60,10 +60,9 @@ class Admin implements UserAuth {
   }
 }
 
-// class GoogleBot implements UserAuth {}
+// class GoogleBot implements Auth {}
 
-class GoogleBot implements UserAuth, UserGoAuth {
-  private _password: string = "user";
+class GoogleBot implements UserGoAuth {
   private _googleToken: string;
 
   checkGoogleLogin(token) {
